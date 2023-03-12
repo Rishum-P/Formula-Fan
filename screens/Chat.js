@@ -47,14 +47,13 @@ export default class ChatScreen extends React.Component {
         user={this.user}
       />
     );
-    const $headercolor = Get_Team_Colour();
 
     //Display message area for Android devices with keyboard avoidance.
     if (Platform.OS === "android") {
       return (
         <View style={styles.container}>
-          <View style={[styles.header, { backgroundColor: $headercolor }]}>
-            <Text style={styles.header_text}>{$Team}</Text>
+          <View style={[styles.header, { backgroundColor: $TeamColor }]}>
+            <Text style={styles.header_text}>{$TeamName}</Text>
           </View>
           <KeyboardAvoidingView
             style={{ flex: 1 }}
@@ -70,8 +69,8 @@ export default class ChatScreen extends React.Component {
     return (
       //Diplay message area for IOS (Untested)
       <View style={styles.container}>
-        <View style={[styles.header, { backgroundColor: $headercolor }]}>
-          <Text style={styles.header_text}>{$Team}</Text>
+        <View style={[styles.header, { backgroundColor: $TeamColor }]}>
+          <Text style={styles.header_text}>{$TeamName}</Text>
         </View>
         <SafeAreaView style={{ flex: 1 }}>{chat}</SafeAreaView>
       </View>
@@ -98,26 +97,3 @@ const styles = StyleSheet.create({
     fontFamily: "FormulaOneBold",
   },
 });
-
-//function to get team colour
-function Get_Team_Colour() {
-  if ($Team === "Mercedes") {
-    return "#00D2BE";
-  } else if ($Team === "Red Bull") {
-    return "#0600EF";
-  } else if ($Team === "Ferrari") {
-    return "#DC0000";
-  } else if ($Team === "McLaren") {
-    return "#FF9800";
-  } else if ($Team === "Aston Martin") {
-    return "#006F62";
-  } else if ($Team === "Alfa Romeo") {
-    return "#900000";
-  } else if ($Team === "Alpine") {
-    return "#0090FF";
-  } else if ($Team === "Hass") {
-    return "#4E4E4E";
-  } else if ($Team === "Williams") {
-    return "#005AFF";
-  }
-}

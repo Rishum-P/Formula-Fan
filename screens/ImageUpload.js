@@ -58,22 +58,21 @@ export default class ImageUpload extends React.Component {
   };
 
   render() {
-    const $headercolor = Get_Team_Colour();
     return (
       <View style={styles.container}>
         {/* Header */}
-        <View style={[styles.header, { backgroundColor: $headercolor }]}>
-          <Text style={styles.header_text}>{$Team}</Text>
+        <View style={[styles.header, { backgroundColor: $TeamColor }]}>
+          <Text style={styles.header_text}>{$TeamName}</Text>
         </View>
 
         {/* Main Sections to get needed details and show preview of image */}
 
-        <View style={[styles.main, { borderColor: $headercolor }]}>
+        <View style={[styles.main, { borderColor: $TeamColor }]}>
           <Text style={styles.text_secondary}>1. Select A Picture</Text>
           <TouchableOpacity
             style={[
               styles.button,
-              { backgroundColor: $headercolor, borderColor: $headercolor },
+              { backgroundColor: $TeamColor, borderColor: $TeamColor },
             ]}
             onPress={this.pickImage}
           >
@@ -81,7 +80,7 @@ export default class ImageUpload extends React.Component {
           </TouchableOpacity>
         </View>
 
-        <View style={[styles.imagepicker, { borderColor: $headercolor }]}>
+        <View style={[styles.imagepicker, { borderColor: $TeamColor }]}>
           <Text style={styles.text_secondary}>2. Preview Image</Text>
           <Image
             source={{ uri: this.state.image }}
@@ -89,12 +88,12 @@ export default class ImageUpload extends React.Component {
           ></Image>
         </View>
 
-        <View style={[styles.main_confim, { borderColor: $headercolor }]}>
+        <View style={[styles.main_confim, { borderColor: $TeamColor }]}>
           <Text style={styles.text_secondary}>3. Confirm Upload </Text>
           <TouchableOpacity
             style={[
               styles.button,
-              { backgroundColor: $headercolor, borderColor: $headercolor },
+              { backgroundColor: $TeamColor, borderColor: $TeamColor },
             ]}
             onPress={this.handlePost}
           >
@@ -106,22 +105,21 @@ export default class ImageUpload extends React.Component {
   }
 }
 
-//Required Styles for this Page
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#15151E",
   },
   header: {
-    alignItems: "center",
-
-    height: 90,
-    padding: 45,
+    paddingVertical: 20,
+    backgroundColor: "#E10600",
   },
   header_text: {
-    color: "#ffff",
-    fontSize: 35,
+    color: "#fff",
+    fontSize: 30,
+    textAlign: "center",
     fontFamily: "FormulaOneBold",
+    marginTop: 35,
   },
   main: {
     marginTop: 55,
@@ -131,29 +129,29 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 24,
     borderWidth: 5,
-    borderBottomEndRadius: 0,
+    borderColor: "#E10600",
+    borderBottomEndRadius: 5,
     borderBottomLeftRadius: 0,
     borderLeftWidth: 0,
     borderBottomWidth: 0,
     borderTopLeftRadius: 0,
     borderBottomStartRadius: 0,
-    borderColor: "#E10600",
   },
   main_confim: {
-    marginTop: 55,
+    marginTop: 10,
     marginLeft: 70,
     marginRight: 20,
     alignItems: "center",
     height: 150,
     borderRadius: 24,
     borderWidth: 5,
-    borderBottomEndRadius: 0,
+    borderColor: "#E10600",
+    borderBottomEndRadius: 5,
     borderBottomLeftRadius: 0,
     borderLeftWidth: 0,
     borderBottomWidth: 0,
     borderTopLeftRadius: 0,
     borderBottomStartRadius: 0,
-    borderColor: "#E10600",
   },
   imagepicker: {
     marginTop: 55,
@@ -161,15 +159,16 @@ const styles = StyleSheet.create({
     marginRight: 70,
     alignItems: "center",
     height: 250,
-    borderRadius: 24,
+    borderRadius: 25,
     borderWidth: 5,
+    borderColor: "#E10600",
     borderBottomEndRadius: 0,
-    borderBottomLeftRadius: 0,
+    borderTopLeftRadius: 10,
     borderTopRightRadius: 0,
     borderRightWidth: 0,
+    borderLeftWidth: 5,
     borderBottomWidth: 0,
-    borderBottomStartRadius: 0,
-    borderColor: "#E10600",
+    borderBottomStartRadius: 5,
   },
   text_main: {
     marginTop: 15,
@@ -181,51 +180,20 @@ const styles = StyleSheet.create({
   text: {
     color: "#ffff",
     fontSize: 15,
-    fontFamily: "FormulaOne",
   },
   text_secondary: {
-    marginTop: 15,
-    textAlign: "center",
     color: "#ffff",
-    fontSize: 25,
+    fontSize: 20,
+    marginTop: 20,
     fontFamily: "FormulaOneBold",
   },
-
   button: {
-    alignItems: "center",
-    padding: 5,
-    marginRight: 80,
+    width: 150,
     height: 50,
-    width: 250,
-    marginLeft: 80,
-    marginTop: 20,
-    paddingTop: 15,
-    paddingBottom: 20,
-    borderRadius: 50,
-    borderWidth: 1,
-    backgroundColor: "#E10600",
-    borderColor: "#E10600",
+    borderRadius: 25,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+    borderWidth: 2,
   },
 });
-
-function Get_Team_Colour() {
-  if ($Team === "Mercedes") {
-    return "#00D2BE";
-  } else if ($Team === "Red Bull") {
-    return "#0600EF";
-  } else if ($Team === "Ferrari") {
-    return "#DC0000";
-  } else if ($Team === "McLaren") {
-    return "#FF9800";
-  } else if ($Team === "Aston Martin") {
-    return "#006F62";
-  } else if ($Team === "Alfa Romeo") {
-    return "#900000";
-  } else if ($Team === "Alpine") {
-    return "#0090FF";
-  } else if ($Team === "Hass") {
-    return "#4E4E4E";
-  } else if ($Team === "Williams") {
-    return "#005AFF";
-  }
-}

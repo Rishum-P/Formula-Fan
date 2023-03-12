@@ -20,47 +20,54 @@ export default class ChatSelect extends React.Component {
   };
 
   render() {
-    const $headercolor = Get_Team_Colour();
-
     return (
       //Display header then input for user to enter a username. Also show button that when pressed calls the continue method.
       <View style={styles.container}>
-        <View style={[styles.header, { backgroundColor: $headercolor }]}>
-          <Text style={styles.header_text}>{$Team}</Text>
+        <View style={[styles.header, { backgroundColor: $TeamColor }]}>
+          <Text style={styles.header_text}>{$TeamName}</Text>
         </View>
 
-        <View style={[styles.main, { borderColor: $headercolor }]}>
-          <Text style={styles.text_main}>Chat with other {$Team} fans!</Text>
+        <View style={styles.card}>
+          <View style={[styles.main, { backgroundColor: $TeamColor }]}>
+            <Text style={styles.text_main}>
+              Chat with other {$TeamName} fans!
+            </Text>
+          </View>
         </View>
 
-        <View style={[styles.username, { borderColor: $headercolor }]}>
-          <Text style={styles.text_secondary}>Enter a Username</Text>
+        <View style={styles.card}>
+          <View style={[styles.username, { backgroundColor: $TeamColor }]}>
+            <Text style={styles.text_secondary}>Enter a Username</Text>
 
-          <TextInput
-            style={[styles.input, { borderColor: $headercolor }]}
-            placeholder="Username"
-            onChangeText={(name) => {
-              this.setState({ name });
-            }}
-            value={this.state.name}
-          />
+            <TextInput
+              style={[styles.input, { borderColor: $TeamColor }]}
+              placeholder="Enter a Username"
+              onChangeText={(name) => {
+                this.setState({ name });
+              }}
+              value={this.state.name}
+            />
+          </View>
+        </View>
 
-          <TouchableOpacity
-            style={[
-              styles.button,
-              { borderColor: $headercolor, backgroundColor: $headercolor },
-            ]}
-            onPress={this.continue}
-          >
-            <Text style={styles.text}>Continue</Text>
-          </TouchableOpacity>
+        <View style={styles.card}>
+          <View style={[styles.main, { backgroundColor: $TeamColor }]}>
+            <TouchableOpacity
+              style={[
+                styles.button,
+                { borderColor: $TeamColor, backgroundColor: $TeamColor },
+              ]}
+              onPress={this.continue}
+            >
+              <Text style={styles.text}>Continue</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
   }
 }
 
-//styles needed for this page
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -70,9 +77,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     padding: 5,
-    marginRight: 80,
-    marginLeft: 80,
-    marginTop: 20,
+    marginTop: 0,
     paddingTop: 15,
     paddingBottom: 20,
     borderRadius: 50,
@@ -80,48 +85,39 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
   },
   header: {
-    alignItems: "center",
-
-    height: 90,
-    padding: 45,
+    paddingVertical: 20,
+    backgroundColor: "#E10600",
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
   },
   header_text: {
-    color: "#ffff",
-    fontSize: 35,
+    color: "#fff",
+    fontSize: 30,
+    textAlign: "center",
     fontFamily: "FormulaOneBold",
+    marginTop: 35,
   },
   main: {
-    marginTop: 55,
-    marginLeft: 70,
-    marginRight: 20,
+    marginTop: 20,
+    marginHorizontal: 20,
     alignItems: "center",
-    height: 100,
+    padding: 20,
     borderRadius: 24,
-    borderWidth: 5,
-    borderBottomEndRadius: 0,
-    borderBottomLeftRadius: 0,
-    borderLeftWidth: 0,
-    borderBottomWidth: 0,
-    borderTopLeftRadius: 0,
-    borderBottomStartRadius: 0,
+    borderWidth: 1,
+    borderColor: "E10600",
+    elevation: 10, // Add a box shadow
   },
   username: {
-    marginTop: 55,
-    marginLeft: 20,
-    marginRight: 70,
+    marginTop: 20,
+    marginHorizontal: 20,
     alignItems: "center",
-    height: 230,
+    padding: 20,
     borderRadius: 24,
-    borderWidth: 5,
-    borderBottomEndRadius: 0,
-    borderBottomLeftRadius: 0,
-    borderTopRightRadius: 0,
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
-    borderBottomStartRadius: 0,
+    borderWidth: 1,
+    borderColor: "E10600",
+    elevation: 10, // Add a box shadow
   },
   text_main: {
-    marginTop: 15,
     textAlign: "center",
     color: "#ffff",
     fontSize: 35,
@@ -129,63 +125,23 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#ffff",
-    fontSize: 15,
+    fontSize: 25,
     fontFamily: "FormulaOne",
   },
   text_secondary: {
-    marginTop: 15,
     textAlign: "center",
     color: "#ffff",
     fontSize: 25,
     fontFamily: "FormulaOneBold",
   },
   input: {
-    alignSelf: "center",
     backgroundColor: "#E5E5E5",
     textAlign: "center",
     marginTop: 20,
-    marginLeft: 5,
     height: 50,
     width: 250,
     borderWidth: StyleSheet.hairlineWidth,
-    borderWidth: 2,
     borderRadius: 100,
     fontWeight: "600",
   },
-  button: {
-    alignItems: "center",
-    padding: 5,
-    marginRight: 80,
-    height: 50,
-    width: 250,
-    marginLeft: 80,
-    marginTop: 20,
-    paddingTop: 15,
-    paddingBottom: 20,
-    borderRadius: 50,
-    borderWidth: 1,
-  },
 });
-
-//function to get the header.
-function Get_Team_Colour() {
-  if ($Team === "Mercedes") {
-    return "#00D2BE";
-  } else if ($Team === "Red Bull") {
-    return "#0600EF";
-  } else if ($Team === "Ferrari") {
-    return "#DC0000";
-  } else if ($Team === "McLaren") {
-    return "#FF9800";
-  } else if ($Team === "Aston Martin") {
-    return "#006F62";
-  } else if ($Team === "Alfa Romeo") {
-    return "#900000";
-  } else if ($Team === "Alpine") {
-    return "#0090FF";
-  } else if ($Team === "Hass") {
-    return "#4E4E4E";
-  } else if ($Team === "Williams") {
-    return "#005AFF";
-  }
-}

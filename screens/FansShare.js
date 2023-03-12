@@ -41,12 +41,11 @@ export default class FansShare extends React.Component {
   }
 
   render() {
-    const $headercolor = Get_Team_Colour();
     return (
       //Show header then a list view of the data items.
       <View style={styles.container}>
-        <View style={[styles.header, { backgroundColor: $headercolor }]}>
-          <Text style={styles.header_text}>{$Team}</Text>
+        <View style={[styles.header, { backgroundColor: $TeamColor }]}>
+          <Text style={styles.header_text}>{$TeamName}</Text>
         </View>
         <View style={styles.postbutton}>
           <TouchableOpacity
@@ -68,10 +67,20 @@ export default class FansShare extends React.Component {
                 key={item}
                 resizeMode="cover"
                 style={{
-                  width: Dimensions.get("window").width,
+                  width: Dimensions.get("window").width - 10,
                   height: 200,
+                  borderRadius: 10,
                   borderWidth: 1,
-                  borderColor: "#ffff",
+                  borderColor: "#dddddd",
+                  marginVertical: 10,
+                  marginHorizontal: 5,
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.23,
+                  shadowRadius: 2.62,
+                  shadowColor: "#000",
                 }}
               />
             )}
@@ -104,15 +113,15 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height,
   },
   header: {
-    alignItems: "center",
-
-    height: 90,
-    padding: 45,
+    paddingVertical: 20,
+    backgroundColor: "#E10600",
   },
   header_text: {
-    color: "#ffff",
-    fontSize: 35,
+    color: "#fff",
+    fontSize: 30,
+    textAlign: "center",
     fontFamily: "FormulaOneBold",
+    marginTop: 35,
   },
   header_post: {
     color: "#ffff",
@@ -129,29 +138,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 60,
     height: 25,
-    marginLeft: 340,
-    marginTop: 45,
+    marginLeft: Dimensions.get("window").width - 75,
+    marginTop: Dimensions.get("window").height * 0.07,
   },
 });
-
-function Get_Team_Colour() {
-  if ($Team === "Mercedes") {
-    return "#00D2BE";
-  } else if ($Team === "Red Bull") {
-    return "#0600EF";
-  } else if ($Team === "Ferrari") {
-    return "#DC0000";
-  } else if ($Team === "McLaren") {
-    return "#FF9800";
-  } else if ($Team === "Aston Martin") {
-    return "#006F62";
-  } else if ($Team === "Alfa Romeo") {
-    return "#900000";
-  } else if ($Team === "Alpine") {
-    return "#0090FF";
-  } else if ($Team === "Hass") {
-    return "#4E4E4E";
-  } else if ($Team === "Williams") {
-    return "#005AFF";
-  }
-}

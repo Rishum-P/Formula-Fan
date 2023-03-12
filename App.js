@@ -1,23 +1,5 @@
-/* 
-Rishum Pather (16657582) Cross Platform Development Assessment 1 - FormulaFan
-
-Expo Link:
-
-
-*/
-
-//Importing the required modules
 import * as React from "react";
-import {
-  StyleSheet,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  Button,
-  Alert,
-  Text,
-  View,
-} from "react-native";
+import { StyleSheet, Image, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -37,7 +19,8 @@ const Stack = createStackNavigator();
 //Main App
 const App = () => {
   //This is likely very bad practice but the Team the user selects is udrf across the whole app and therefore it is easier to declare it Globally than pass it through serveral times.
-  global.$Team = "Williams";
+  global.$TeamName = "Williams";
+  global.$TeamColor = "Williams";
 
   //Loading the official formula one font
   const [loaded] = useFonts({
@@ -72,16 +55,23 @@ function HomeTabs() {
   return (
     //Routes with styling to make the Bottom Menu Bar look better.
     <Tab.Navigator
-      keyinitialRouteName="TeamPage"
+      initialRouteName="TeamPage"
       screenOptions={{
+        headerShown: false,
         tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
-        tabBarStyle: [
-          {
-            display: "flex",
-          },
-          null,
-        ],
+        tabBarStyle: {
+          borderTopWidth: 0,
+          position: "absolute",
+          bottom: 15,
+          left: 25,
+          right: 25,
+          elevation: 0,
+          backgroundColor: "#B80F0A",
+          borderRadius: 35,
+          height: 50,
+          ...styles.shadow,
+        },
       }}
     >
       <Tab.Screen
@@ -89,21 +79,24 @@ function HomeTabs() {
         component={TeamPage}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View>
-              <Image
-                source={require("./assets/icons/news.png")}
-                resizeMode="contain"
-                style={{
-                  width: 20,
-                  height: 20,
-                  tintColor: focused ? "#fff700" : "#ffff",
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#fff700" : "#ffff", fontSize: 9 }}
-              >
-                NEWS
-              </Text>
+            <View style={{ alignItems: "center" }}>
+              <View style={{ flexDirection: "column", alignItems: "center" }}>
+                <Image
+                  source={require("./assets/icons/news.png")}
+                  resizeMode="contain"
+                  style={{
+                    width: 20,
+                    height: 20,
+                    tintColor: focused ? "#fff700" : "#ffff",
+                    justifyContent: "center",
+                  }}
+                />
+                <Text
+                  style={{ color: focused ? "#fff700" : "#ffff", fontSize: 9 }}
+                >
+                  NEWS
+                </Text>
+              </View>
             </View>
           ),
         }}
@@ -137,7 +130,7 @@ function HomeTabs() {
         component={FansShare}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View>
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
               <Image
                 source={require("./assets/icons/share.png")}
                 resizeMode="contain"
@@ -148,7 +141,11 @@ function HomeTabs() {
                 }}
               />
               <Text
-                style={{ color: focused ? "#fff700" : "#ffff", fontSize: 9 }}
+                style={{
+                  color: focused ? "#fff700" : "#ffff",
+                  fontSize: 9,
+                  marginTop: 2,
+                }}
               >
                 SHARE
               </Text>
@@ -161,7 +158,7 @@ function HomeTabs() {
         component={LocShare}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View>
+            <View style={{ alignItems: "center" }}>
               <Image
                 source={require("./assets/icons/location.png")}
                 resizeMode="contain"
@@ -172,9 +169,12 @@ function HomeTabs() {
                 }}
               />
               <Text
-                style={{ color: focused ? "#fff700" : "#ffff", fontSize: 9 }}
+                style={{
+                  color: focused ? "#fff700" : "#ffff",
+                  fontSize: 9,
+                  marginTop: 2,
+                }}
               >
-                {" "}
                 FIND
               </Text>
             </View>
